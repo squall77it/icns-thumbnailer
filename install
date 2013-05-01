@@ -1,0 +1,60 @@
+#!/bin/bash
+#
+# install - installer for icns-thumbnailer
+#
+#    Copyright (C) 2013 Rodrigo Silva (MestreLion) <linux@rodrigosilva.com>
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/gpl>.
+
+uninstall=0
+
+usage(){ echo "Usage: [sudo] install [--uninstall]"; exit ${1:-0}; }
+
+for arg in "$@"; do case "$arg" in
+	-h|--help) usage;;
+	--uninstall) uninstall=1;;
+	*) echo "invalid argument: $arg" >&2; usage 1;;
+esac; done
+
+if (($(id -u))); then
+	echo "User install"
+	prefix="$HOME"/.local
+	datadir=${XDG_DATA_HOME:-"$HOME"/.local/share}
+else
+	echo "System install"
+	prefix=/usr/local
+	datadir=$prefix/share
+fi
+
+bindir=$prefix/bin
+thumbdir=$datadir/thumbnailers
+mydir=$(dirname "$(readlink -f "$0")")
+
+if ((uninstall)); then
+	echo "Uninstalling"
+	rm -f "$bindir"/icns-thumbnailer
+	rm -f "$thumbdir"/icns.thumbnailer
+	echo "Done"
+	exit
+fi
+
+mkdir -p "$bindir" "$thumbdir"
+
+cp {"$mydir","$bindir"}/icns-thumbnailer
+chmod +x "$bindir"/icns-thumbnailer
+awk -v bindir="$(printf '%q' "$bindir")" \
+	'{sub("Exec=","Exec=" bindir  "/")}1' \
+	"$mydir"/icns.thumbnailer > "$thumbdir"/icns.thumbnailer
+
+echo "Done"

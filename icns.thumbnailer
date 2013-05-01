@@ -1,0 +1,4 @@
+[Thumbnailer Entry]
+TryExec=icns-thumbnailer
+Exec=icns-thumbnailer %i %o %s
+MimeType=image/x-icns;
