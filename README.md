@@ -53,7 +53,7 @@ Assuming the install dir is in your `$PATH` (and for user-installs, `~/.local/bi
 
 Where:
 
-- `inputfile` must be an existing, readable, *locally-available* file. URIs, like `file://`, `smb://`, `http://` etc, are *not* supported, but could be in the future. Remote files that are locally mounted, accessible via `/some/path`, are fine. And, of course, it must be a valid `icns` file. (Well, actually *any* image file natively  supported by `GdkPixbuf` will work, but don't tell anyone!).
+- `inputfile` must be an existing, readable, *locally-available* file. URIs, like `file://`, `smb://`, `http://` etc, are *not* supported, but could be in the future. Remote files that are locally mounted, accessible via `/some/path`, are fine. And, of course, it must be a valid `icns` file. (Well, actually *any* image file natively  supported by `GdkPixbuf` will work, but don't tell anyone!). For multi-image icons, as most are, it the largest image will be converted/resized.
 
 - `outputfile` must be a writable file path. If it already exists, it will be overwritten. No URIs either. Output format will be `PNG`. (Yes, even if you name it `somethingelse.jpg`, sorry)
 
@@ -72,6 +72,18 @@ Patches are welcome! Fork, hack, request pull! Here is my current to-do list:
 
 - **Improve error handling and reporting**: consistent Exception bubbling, finer-grain usage of `GLib.GError`, `logging` module for console verbosity, including `-q|--quiet` for `.thumbnailer` usage, consistent exit status.
 
+Also, about the above, please help promoting the following related bugs:
+
+https://bugzilla.gnome.org/show_bug.cgi?id=531059
+
+https://bugzilla.gnome.org/show_bug.cgi?id=469912
+
+https://bugzilla.gnome.org/show_bug.cgi?id=629474
+
+And the most important one:
+
+https://bugzilla.gnome.org/show_bug.cgi?id=699414
+
 Written by
 ----------
 
@@ -80,7 +92,7 @@ Rodigo Silva (MestreLion) <linux@rodrigosilva.com>
 Licenses and Copyright
 ----------------------
 
-Copyright (C) 2011 Rodigo Silva (MestreLion) <linux@rodrigosilva.com>.
+Copyright (C) 2013 Rodigo Silva (MestreLion) <linux@rodrigosilva.com>.
 
 License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
 
