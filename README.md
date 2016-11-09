@@ -87,12 +87,12 @@ https://bugzilla.gnome.org/show_bug.cgi?id=699414
 Written by
 ----------
 
-Rodigo Silva (MestreLion) <linux@rodrigosilva.com>
+Rodrigo Silva (MestreLion) <linux@rodrigosilva.com>
 
 Licenses and Copyright
 ----------------------
 
-Copyright (C) 2013 Rodigo Silva (MestreLion) <linux@rodrigosilva.com>.
+Copyright (C) 2013 Rodrigo Silva (MestreLion) <linux@rodrigosilva.com>.
 
 License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
 
